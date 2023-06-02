@@ -1,4 +1,5 @@
 import { Button } from '@/components';
+import tw, { css } from 'twin.macro';
 
 export default {
   title: 'Components/Button',
@@ -10,5 +11,17 @@ export const Default = () => {
 };
 
 export const Text = () => {
-  return <span className="text-[blue]">Text</span>;
+  return (
+    <h1
+      className="text-[blue]"
+      css={[
+        tw`inline`,
+        css`
+          border: solid 1px black;
+        `,
+      ]}
+    >
+      Text
+    </h1>
+  );
 };

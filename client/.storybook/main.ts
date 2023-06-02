@@ -33,5 +33,28 @@ const config: StorybookConfig = {
 
     return config;
   },
+  babel: async (config) => ({
+    ...config,
+    presets: [['next/babel']],
+    plugins: [
+      'babel-plugin-macros',
+      [
+        '@emotion/babel-plugin-jsx-pragmatic',
+        {
+          export: 'jsx',
+          import: '__cssprop',
+          module: '@emotion/react',
+        },
+      ],
+      [
+        '@babel/plugin-transform-react-jsx',
+        {
+          pragma: '__cssprop',
+        },
+        'emotion-css-prop',
+      ],
+    ],
+  }),
 };
+
 export default config;

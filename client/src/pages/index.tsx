@@ -3,7 +3,7 @@ import { Button } from '@/components';
 const Home = () => {
   return (
     <main>
-      <div>Init</div>
+      <h1>Init</h1>
       <Button />
     </main>
   );
