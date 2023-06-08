@@ -1,4 +1,6 @@
+import { ReactNode } from 'react';
+
 export interface ButtonProps {
-  text: string;
+  children: ReactNode;
   testId?: string;
 }
