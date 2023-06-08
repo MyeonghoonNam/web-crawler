@@ -8,7 +8,7 @@ describe('Button Component', () => {
     const text = 'SUBMIT';
     const testId = PAGE_URL_SUBMIT_BUTTON_TEST_ID;
 
-    render(<Button text="SUBMIT" testId={testId} />);
+    render(<Button testId={testId}>{text}</Button>);
 
     const button = screen.getByTestId(testId);
 
