@@ -16,8 +16,9 @@ describe('Input Component', () => {
   it('is input have value ', async () => {
     const testId = 'Test';
     const value = 'Test Value';
+    const onChange = jest.fn();
 
-    render(<Input value={value} testId={testId} />);
+    render(<Input value={value} onChange={onChange} testId={testId} />);
 
     const input: HTMLInputElement = screen.getByTestId(testId);
 
