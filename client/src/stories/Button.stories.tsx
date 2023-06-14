@@ -5,7 +5,7 @@ export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    onClick: 'onClick',
+    onClick: { action: 'onClick' },
   },
 };
 
