@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { PAGE_URL_INPUT_TEST_ID } from '@/constants/Input';
 import { PAGE_URL_SUBMIT_BUTTON_TEST_ID } from '@/constants/Button';
@@ -17,5 +18,20 @@ describe('Home', () => {
 
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
+  });
+
+  it('Input Component onChange works correctly', async () => {
+    const testId = PAGE_URL_INPUT_TEST_ID;
+    const onChange = jest.fn();
+
+    render(<Input testId={testId} onChange={onChange} />);
+
+    const input = screen.getByTestId(testId);
+    const value = 'test onChange';
+
+    await userEvent.type(input, value);
+
+    expect(onChange).toBeCalled();
+    expect(input).toHaveValue(value);
   });
 });
