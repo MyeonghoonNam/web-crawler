@@ -91,7 +91,13 @@
     "react/jsx-no-useless-fragment": "off",
     "react/display-name": "off",
     "react/require-default-props": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
