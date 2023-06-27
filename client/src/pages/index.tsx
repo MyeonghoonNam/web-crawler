@@ -1,17 +1,9 @@
-import { Input, Button } from '@/components';
-import { ChangeEvent, useCallback, useState } from 'react';
+import { Form } from '@/components';
 
 const Home = () => {
-  const [urlValue, setUrlValue] = useState('');
-
-  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setUrlValue(e.target.value);
-  }, []);
-
   return (
     <main>
-      <Input value={urlValue} onChange={handleInputChange} />
-      <Button>SUBMIT</Button>
+      <Form />
     </main>
   );
 };
