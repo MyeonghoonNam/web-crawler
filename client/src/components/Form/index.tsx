@@ -1,24 +1,39 @@
-import { ChangeEvent, useState, useCallback } from 'react';
+import { useForm } from '@/hooks';
+import { FORM_URL_INPUT_EMPTY_VALUE } from '@/constants/errors';
 
 const Form = () => {
-  const [value, setValue] = useState('');
+  const { errors, handleChange, handleSubmit } = useForm({
+    initialState: {
+      url: '',
+    },
+    validate: ({ url }) => {
+      let urlError = '';
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setValue(() => e.target.value);
-  }, []);
+      if (!url) {
+        urlError = FORM_URL_INPUT_EMPTY_VALUE;
+      }
+
+      return {
+        url: urlError,
+      };
+    },
+    onSubmit: async () => {
+      //
+    },
+  });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="url">URL</label>
         <input
           type="text"
           id="url"
           name="url"
-          value={value}
           onChange={handleChange}
           className="w-[250px] h-[30px] text-[14px] border-[1px] border-[grey] px-[4px] py-[2px] rounded-[2px] outline-none"
         />
+        <span>{errors?.url}</span>
       </div>
 
       <button
