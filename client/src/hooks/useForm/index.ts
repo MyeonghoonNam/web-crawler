@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState, useCallback } from 'react';
+import { ChangeEvent, FormEvent, useState, useCallback, useMemo } from 'react';
 
 import type { UseFormProps, ErrorType } from './types';
 
@@ -9,6 +9,10 @@ const useForm = <T extends object>({
 }: UseFormProps<T>) => {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState<ErrorType<T>>();
+  const propertyLen = useMemo(
+    () => Object.keys(initialState).length,
+    [initialState],
+  );
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,14 +24,19 @@ const useForm = <T extends object>({
       e.preventDefault();
 
       const newErrors = validate(values);
+      const validPropertyLen = Object.values(newErrors).filter(
+        (v) => v === null,
+      ).length;
 
-      if (Object.keys(newErrors).length === 0) {
+      const isValid = propertyLen === validPropertyLen;
+
+      if (isValid) {
         await onSubmit();
       } else {
         setErrors(newErrors);
       }
     },
-    [values, validate, onSubmit],
+    [values, validate, onSubmit, propertyLen],
   );
 
   return { errors, handleChange, handleSubmit };
