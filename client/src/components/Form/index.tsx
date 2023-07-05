@@ -3,9 +3,7 @@ import { FORM_URL_INPUT_EMPTY_VALUE } from '@/constants/errors';
 
 const Form = () => {
   const { errors, handleChange, handleSubmit } = useForm({
-    initialState: {
-      url: '',
-    },
+    initialState: [{ url: '' }, { container: '' }, { key: '', value: '' }],
     validate: ({ url }) => {
       let urlError = '';
 
