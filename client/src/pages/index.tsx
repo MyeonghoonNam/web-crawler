@@ -1,9 +1,17 @@
-import { Form } from '@/components';
+import { Input } from '@/components';
 
 const Home = () => {
   return (
     <main>
-      <Form />
+      <form>
+        <Input label="URL">
+          <Input.TextField />
+        </Input>
+
+        <Input label="Container">
+          <Input.TextField />
+        </Input>
+      </form>
     </main>
   );
 };
