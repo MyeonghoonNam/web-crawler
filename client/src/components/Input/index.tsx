@@ -1,10 +1,9 @@
-import { Children, cloneElement, ForwardedRef, forwardRef } from 'react';
-import { useId } from '@/hooks';
+import { Children, cloneElement, ForwardedRef, forwardRef, useId } from 'react';
 import type { InputProps, TextFieldProps } from './type';
 
 const Input = ({ label, children, ...props }: InputProps) => {
   const child = Children.only(children);
-  const generatedId = useId('input-id-');
+  const generatedId = useId();
   const id = child.props.id ?? generatedId;
 
   return (
