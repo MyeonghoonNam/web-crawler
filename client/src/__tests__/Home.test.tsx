@@ -31,4 +31,24 @@ describe('Home test', () => {
     expect(keyInput).toHaveValue(changeKeyValue);
     expect(valueInput).toHaveValue(changeValueValue);
   });
+
+  it('AddKeyValue 버튼 클릭시 key input 1개, value input 1개로 총 2개의 폼이 추가된다.', async () => {
+    render(<Home />);
+
+    const prevKeyInputLength = screen.getAllByLabelText('Key').length;
+    const prevValueInputLength = screen.getAllByLabelText('Value').length;
+
+    expect(prevKeyInputLength).toBe(1);
+    expect(prevValueInputLength).toBe(1);
+
+    const addKeyValueButton = screen.getByText('AddKeyValue');
+
+    await userEvent.click(addKeyValueButton);
+
+    const nextKeyInputLength = screen.getAllByLabelText('Key').length;
+    const nextKeyValueLength = screen.getAllByLabelText('Value').length;
+
+    expect(nextKeyInputLength).toBe(2);
+    expect(nextKeyValueLength).toBe(2);
+  });
 });
